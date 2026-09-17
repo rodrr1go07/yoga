@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga — ED. FÍSICA
+    
+</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050908;
+    color: white;
+    overflow: hidden;
+}
+
+.presentation {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* =====================================
+   SLIDES
+===================================== */
+
+.slide {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 80px 10%;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: scale(1.08);
+
+    background:
+        linear-gradient(
+            120deg,
+            #071510,
+            #12382b
+        );
+
+    transition:
+        opacity .8s ease,
+        transform 1s cubic-bezier(.16,1,.3,1),
+        visibility .8s;
+}
+
+/* Imagem de fundo */
+.slide.has-bg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Camada escura sobre a imagem */
+.slide.has-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.78),
+            rgba(0,0,0,.48),
+            rgba(0,0,0,.30)
+        );
+
+    z-index: 1;
+}
+
+/* Fundo padrão quando não há imagem */
+.slide:not(.has-bg)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgb(255, 253, 253),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 10% 80%,
+            rgb(255, 255, 255),
+            transparent 30%
+        );
+
+    z-index: 1;
+}
+
+/* Slide ativo */
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    z-index: 5;
+}
+
+/* Saída pela esquerda */
+
+.slide.prev {
+    opacity: 0;
+    transform: translateX(-100%) scale(.92);
+}
+
+/* Saída pela direita */
+
+.slide.next {
+    opacity: 0;
+    transform: translateX(100%) scale(.92);
+}
+
+
+/* =====================================
+   EFEITO KEN BURNS NAS FOTOS
+===================================== */
+
+.slide.active.has-bg {
+    animation: backgroundZoom 8s ease-out forwards;
+}
+
+@keyframes backgroundZoom {
+
+    from {
+        background-size: 115%;
+    }
+
+    to {
+        background-size: 100%;
+    }
+
+}
+
+
+/* =====================================
+   CONTEÚDO
+===================================== */
+
+.content {
+    position: relative;
+    z-index: 10;
+
+    width: 100%;
+    max-width: 1100px;
+}
+
+
+/* Entrada dos textos */
+
+.slide.active .content > * {
+    animation:
+        textEnter .8s cubic-bezier(.16,1,.3,1)
+        both;
+}
+
+.slide.active .content > *:nth-child(1) {
+    animation-delay: .10s;
+}
+
+.slide.active .content > *:nth-child(2) {
+    animation-delay: .20s;
+}
+
+.slide.active .content > *:nth-child(3) {
+    animation-delay: .35s;
+}
+
+.slide.active .content > *:nth-child(4) {
+    animation-delay: .50s;
+}
+
+.slide.active .content > *:nth-child(5) {
+    animation-delay: .65s;
+}
+
+@keyframes textEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(45px);
+        filter: blur(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+
+}
+
+
+/* =====================================
+   TEXTOS
+===================================== */
+
+.number {
+    color: #ffffff;
+
+    font-size: 15px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 15px;
+}
+
+h2 {
+
+    font-size: clamp(42px, 5vw, 72px);
+
+    line-height: 1.02;
+
+    margin-bottom: 22px;
+
+    letter-spacing: -2px;
+
+}
+
+.responsavel {
+
+    display: inline-block;
+
+    padding: 10px 20px;
+
+    border-radius: 50px;
+
+    border: 1px solid rgba(255,255,255,.22);
+
+    background: rgba(255,255,255,.08);
+
+    backdrop-filter: blur(12px);
+
+    color: #ffffff;
+
+    margin-bottom: 30px;
+
+    font-size: 16px;
+
+}
+
+.description {
+
+    max-width: 850px;
+
+    font-size: 21px;
+
+    line-height: 1.7;
+
+    color: #ffffff;
+
+    margin-bottom: 25px;
+
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+
+    font-size: 23px;
+
+    line-height: 1.5;
+
+    margin: 13px 0;
+
+    padding-left: 28px;
+
+    position: relative;
+
+    color: #ffffff;
+
+}
+
+li::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 2px;
+
+    top: 12px;
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 15px rgb(255, 255, 255);
+
+}
+
+
+/* =====================================
+   CAPA
+===================================== */
+
+.cover {
+    text-align: center;
+}
+
+.cover .content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+.cover h1 {
+
+    font-size: clamp(80px, 13vw, 160px);
+
+    letter-spacing: 18px;
+
+    margin-left: 18px;
+
+    line-height: .9;
+
+    background:
+        linear-gradient(
+            135deg,
+            white,
+            #ffffff,
+            #ffffff
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    text-shadow:
+        0 20px 60px rgba(0,0,0,.35);
+
+}
+
+.cover .line {
+
+    width: 120px;
+
+    height: 3px;
+
+    margin: 35px 0;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 25px rgb(243, 243, 243);
+
+}
+
+.cover h3 {
+
+    font-size: 26px;
+
+    font-weight: 300;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    color: #ffffff;
+
+}
+
+
+/* =====================================
+   OBRIGADO
+===================================== */
+
+.thanks {
+    text-align: center;
+}
+
+.thanks .content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+.thanks h2 {
+
+    font-size: clamp(65px, 9vw, 120px);
+
+    background:
+        linear-gradient(
+            135deg,
+            white,
+            #ffffff
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+}
+
+.thanks p {
+
+    font-size: 24px;
+
+    color: #ffffff;
+
+}
+
+
+/* =====================================
+   REFERÊNCIAS
+===================================== */
+
+.references li {
+
+    font-size: 18px;
+
+    color: #ffffff;
+
+}
+
+
+/* =====================================
+   CONTADOR
+===================================== */
+
+.counter {
+
+    position: fixed;
+
+    z-index: 50;
+
+    bottom: 28px;
+
+    left: 35px;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,.65);
+
+}
+
+
+/* =====================================
+   BOTÕES
+===================================== */
+
+.controls {
+
+    position: fixed;
+
+    z-index: 50;
+
+    right: 35px;
+
+    bottom: 22px;
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+.controls button {
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.20);
+
+    background: rgba(255,255,255,.08);
+
+    color: white;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(12px);
+
+    transition: .3s ease;
+
+}
+
+.controls button:hover {
+
+    background: rgba(150,215,185,.25);
+
+    transform: scale(1.12);
+
+}
+
+
+/* =====================================
+   BARRA DE PROGRESSO
+===================================== */
+
+.progress {
+
+    position: fixed;
+
+    z-index: 100;
+
+    top: 0;
+
+    left: 0;
+
+    height: 3px;
+
+    width: 0%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 15px rgba(255, 255, 255, 0.8);
+
+    transition:
+        width .8s cubic-bezier(.16,1,.3,1);
+
+}
+
+
+/* =====================================
+   RESPONSIVO
+===================================== */
+
+@media(max-width:700px) {
+
+    .slide {
+        padding: 55px 35px;
+    }
+
+    .description {
+        font-size: 18px;
+    }
+
+    li {
+        font-size: 19px;
+    }
+
+    .controls {
+        right: 20px;
+        bottom: 18px;
+    }
+
+    .counter {
+        left: 20px;
+    }
+
+}
+
+
+/* =====================================
+   ACESSIBILIDADE
+===================================== */
+
+@media(prefers-reduced-motion:reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: .01ms !important;
+
+        transition-duration: .01ms !important;
+
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="presentation">
+
+<div class="progress" id="progress"></div>
+
+
+<!-- ==================================
+     CAPA
+
+     COLOQUE A IMAGEM:
+     capa.jpg
+
+     NA MESMA PASTA DO HTML
+================================== -->
+
+<section
+    class="slide cover active"
+    data-bg="capa.jpg">
+
+    <div class="content">
+
+        <h1>YOGA</h1>
+
+        <div class="line"></div>
+
+        <h3>ED. FÍSICA</h3>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================
+     ORIGEM
+     
+     IMAGEM:
+     origem.jpg
+================================== -->
+
+<section
+    class="slide"
+    data-bg="origem.jpg">
+
+    <div class="content">
+
+        <div class="number">
+            01 — ORIGEM
+        </div>
+
+        <h2>
+            Origem e<br>
+            Filosofia Básica
+        </h2>
+
+    
+        <p class="description">
+            O Yoga é uma prática milenar originária
+            da Índia que integra corpo, mente e respiração.
+        </p>
+
+        <ul>
+
+            <li>
+                Origem histórica do Yoga
+            </li>
+
+            <li>
+                Integração entre corpo, mente e respiração
+            </li>
+
+            <li>
+                Busca pelo equilíbrio e autoconhecimento
+            </li>
+
+            <li>
+                Princípios básicos da filosofia do Yoga
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================
+     POSTURAS
+     
+     IMAGEM:
+     posturas.jpg
+================================== -->
+
+<section
+    class="slide"
+    data-bg="posturas.jpg">
+
+    <div class="content">
+
+        <div class="number">
+            02 — MOVIMENTO
+        </div>
+
+        <h2>
+            Posturas
+        </h2>
+
+
+
+        <p class="description">
+            As posturas, conhecidas como asanas,
+            são movimentos utilizados para trabalhar
+            diferentes capacidades do corpo.
+        </p>
+
+        <ul>
+
+            <li>
+                Desenvolvimento da consciência corporal
+            </li>
+
+            <li>
+                Melhora da flexibilidade e mobilidade
+            </li>
+
+            <li>
+                Auxílio na postura e estabilidade
+            </li>
+
+            <li>
+                Exemplos: montanha, árvore e criança
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================
+     ALONGAMENTO
+     
+     IMAGEM:
+     alongamento.jpg
+================================== -->
+
+<section
+    class="slide"
+    data-bg="alongamento.jpg">
+
+    <div class="content">
+
+        <div class="number">
+            03 — FLEXIBILIDADE
+        </div>
+
+        <h2>
+            Alongamento
+        </h2>
+
+    
+        <p class="description">
+            O alongamento é utilizado para melhorar
+            a amplitude dos movimentos e preparar
+            o corpo para diferentes posturas.
+        </p>
+
+        <ul>
+
+            <li>
+                Melhora da flexibilidade
+            </li>
+
+            <li>
+                Aumento da amplitude dos movimentos
+            </li>
+
+            <li>
+                Relaxamento e consciência corporal
+            </li>
+
+            <li>
+                Auxílio na execução das posturas
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================
+     FORÇA E EQUILÍBRIO
+     
+     IMAGEM:
+     forca.jpg
+================================== -->
+
+<section
+    class="slide"
+    data-bg="forca.jpg">
+
+    <div class="content">
+
+        <div class="number">
+            04 — CONTROLE
+        </div>
+
+        <h2>
+            Força e<br>
+            Equilíbrio
+        </h2>
+
+      
+        <p class="description">
+            A prática do Yoga pode desenvolver força
+            muscular, estabilidade e equilíbrio por
+            meio da sustentação das posturas.
+        </p>
+
+        <ul>
+
+            <li>
+                Fortalecimento muscular
+            </li>
+
+            <li>
+                Melhora da estabilidade corporal
+            </li>
+
+            <li>
+                Desenvolvimento do equilíbrio
+            </li>
+
+            <li>
+                Maior controle dos movimentos
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================
+     RESPIRAÇÃO
+     
+     IMAGEM:
+     respiracao.jpg
+================================== -->
+
+<section
+    class="slide"
+    data-bg="respiracao.jpg">
+
+    <div class="content">
+
+        <div class="number">
+            05 — RESPIRAÇÃO
+        </div>
+
+        <h2>
+            Técnicas de<br>
+            Respiração
+        </h2>
+
+       
+
+        <p class="description">
+            No Yoga, a respiração é trabalhada de
+            maneira consciente e pode ser coordenada
+            com os movimentos.
+        </p>
+
+        <ul>
+
+            <li>
+                Controle consciente da respiração
+            </li>
+
+            <li>
+                Coordenação entre respiração e movimento
+            </li>
+
+            <li>
+                Auxílio na concentração
+            </li>
+
+            <li>
+                Promoção de relaxamento
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================
+     YOGA FITNESS
+     
+     IMAGEM:
+     yoga-fitness.jpg
+================================== -->
+
+<section
+    class="slide"
+    data-bg="yoga-fitness.jpg">
+
+    <div class="content">
+
+        <div class="number">
+            06 — CONDICIONAMENTO
+        </div>
+
+        <h2>
+            Yoga<br>
+            Fitness
+        </h2>
+
+
+        <p class="description">
+            O Yoga Fitness combina elementos do Yoga
+            com exercícios voltados ao condicionamento físico.
+        </p>
+
+        <ul>
+
+            <li>
+                Trabalho de força e resistência
+            </li>
+
+            <li>
+                Flexibilidade e mobilidade
+            </li>
+
+            <li>
+                Consciência corporal
+            </li>
+
+            <li>
+                Contribuição para o condicionamento físico
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================
+     OBRIGADO
+     
+     IMAGEM:
+     obrigado.jpg
+================================== -->
+
+<section
+    class="slide thanks"
+    data-bg="obrigado.jpg">
+
+    <div class="content">
+
+        <h2>
+            Obrigado!
+        </h2>
+
+        <p>
+            Obrigado pela atenção.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================
+     REFERÊNCIAS
+     
+     IMAGEM:
+     referencias.jpg
+================================== -->
+
+<section
+    class="slide references"
+    data-bg="referencias.jpg">
+
+    <div class="content">
+
+        <div class="number">
+            FONTES
+        </div>
+
+        <h2>
+            Referências
+        </h2>
+
+        <ul>
+
+            <li>
+                Organização Mundial da Saúde (OMS) —
+                recomendações sobre atividade física e saúde.
+            </li>
+
+            <li>
+                Ministério da Saúde —
+                materiais sobre práticas corporais
+                e atividade física.
+            </li>
+
+            <li>
+                Encyclopaedia Britannica —
+                informações históricas sobre Yoga.
+            </li>
+
+            <li>
+                International Journal of Yoga —
+                estudos sobre práticas e aspectos do Yoga.
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+</div>
+
+
+
+<!-- CONTADOR -->
+
+<div class="counter">
+
+    <span id="current">
+        01
+    </span>
+
+    /
+
+    <span id="total">
+        09
+    </span>
+
+</div>
+
+
+
+<!-- BOTÕES -->
+
+<div class="controls">
+
+    <button id="prev">
+        ←
+    </button>
+
+    <button id="next">
+        →
+    </button>
+
+</div>
+
+
+
+<script>
+
+/* =====================================
+   CONFIGURAÇÃO AUTOMÁTICA DAS IMAGENS
+===================================== */
+
+const slides =
+    document.querySelectorAll(".slide");
+
+slides.forEach(slide => {
+
+    const image =
+        slide.getAttribute("data-bg");
+
+    if (!image) return;
+
+    /*
+       Verifica se a imagem existe.
+       Se existir, coloca como fundo.
+    */
+
+    const img = new Image();
+
+    img.onload = function() {
+
+        slide.style.backgroundImage =
+            `url("${image}")`;
+
+        slide.classList.add("has-bg");
+
+    };
+
+    img.src = image;
+
+});
+
+
+
+/* =====================================
+   SISTEMA DE SLIDES
+===================================== */
+
+const currentNumber =
+    document.getElementById("current");
+
+const totalNumber =
+    document.getElementById("total");
+
+const progress =
+    document.getElementById("progress");
+
+let current = 0;
+
+let animating = false;
+
+
+totalNumber.textContent =
+    String(slides.length).padStart(2,"0");
+
+
+
+function showSlide(index, direction = 1) {
+
+    if (animating) return;
+
+    if (index < 0)
+        index = slides.length - 1;
+
+    if (index >= slides.length)
+        index = 0;
+
+    if (index === current)
+        return;
+
+    animating = true;
+
+    const oldSlide =
+        slides[current];
+
+    const newSlide =
+        slides[index];
+
+
+    slides.forEach(slide => {
+
+        slide.classList.remove(
+            "active",
+            "prev",
+            "next"
+        );
+
+    });
+
+
+    if (direction > 0) {
+
+        oldSlide.classList.add("prev");
+
+        newSlide.classList.add("next");
+
+    } else {
+
+        oldSlide.classList.add("next");
+
+        newSlide.classList.add("prev");
+
+    }
+
+
+    requestAnimationFrame(() => {
+
+        requestAnimationFrame(() => {
+
+            newSlide.classList.remove(
+                "prev",
+                "next"
+            );
+
+            newSlide.classList.add("active");
+
+
+            current = index;
+
+
+            currentNumber.textContent =
+                String(current + 1).padStart(2,"0");
+
+
+            progress.style.width =
+                ((current + 1) / slides.length * 100)
+                + "%";
+
+
+            setTimeout(() => {
+
+                animating = false;
+
+            }, 850);
+
+        });
+
+    });
+
+}
+
+
+
+/* =====================================
+   PRÓXIMO
+===================================== */
+
+function nextSlide() {
+
+    showSlide(
+        current + 1,
+        1
+    );
+
+}
+
+
+
+/* =====================================
+   ANTERIOR
+===================================== */
+
+function previousSlide() {
+
+    showSlide(
+        current - 1,
+        -1
+    );
+
+}
+
+
+
+/* =====================================
+   BOTÕES
+===================================== */
+
+document
+    .getElementById("next")
+    .addEventListener(
+        "click",
+        nextSlide
+    );
+
+
+document
+    .getElementById("prev")
+    .addEventListener(
+        "click",
+        previousSlide
+    );
+
+
+
+/* =====================================
+   TECLADO
+===================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "ArrowRight" ||
+            event.key === " " ||
+            event.key === "PageDown"
+        ) {
+
+            event.preventDefault();
+
+            nextSlide();
+
+        }
+
+
+        if (
+            event.key === "ArrowLeft" ||
+            event.key === "PageUp"
+        ) {
+
+            event.preventDefault();
+
+            previousSlide();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================
+   BARRA INICIAL
+===================================== */
+
+progress.style.width =
+    (1 / slides.length * 100) + "%";
+
+
+
+/* =====================================
+   SWIPE NO CELULAR
+===================================== */
+
+let touchStartX = 0;
+
+
+document.addEventListener(
+    "touchstart",
+    function(event) {
+
+        touchStartX =
+            event.changedTouches[0].screenX;
+
+    }
+);
+
+
+document.addEventListener(
+    "touchend",
+    function(event) {
+
+        const touchEndX =
+            event.changedTouches[0].screenX;
+
+        const distance =
+            touchEndX - touchStartX;
+
+
+        if (Math.abs(distance) < 50)
+            return;
+
+
+        if (distance < 0)
+            nextSlide();
+
+        else
+            previousSlide();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
